@@ -1,120 +1,26 @@
-/* 
-조건문
--비교연산자를 활용한 조건식 이용해서 특정 조건일 때 서로 다른 코드가 실행되도록 동기처리 
+/*
+배열전용 내장 함수인 forEach vs map 차이점
+-forEach 
+    순수배열, 유사배열 모두 반복 가능
+    원본 배열 복사기능 없음, 반복기능만 있음
 
-if(조건식){
-조건식 1이 참이면 이곳의 구문이 실행 되고 종료
-거짓이면 이곳의 구문을 무시하고 다음 조건으로 넘어감
-}
+-map
+    순수배열만 반복가능(유사배열 반복불가:DOM반복처리 불가)
+    원본 배열 복사기능(deep copy) 불변성유지 가능(Immutable)
+    (Immutable)란 참조형 자료를 변경할 때 원본데이터를 훼손시키지 않으면서 복사본 생성
+    리액트에서는 데이터 변경처리 할 때 무조건 원본과 복사본이 같이 있어야 함
+    원본이 있어야지 원본대비 변경할 내용을 인지가능하기 때문
 
-else if(조건식2){
-조건식 2가 참이면 이곳의 구문이 실행 되고 종료
-거짓이면 이곳의 구문을 무시하고 다음 조건으로 넘어감
-}
-
-else {
-위의 모든 조건이 참이 아닐때 이곳의 구문이 실행 되고 종료 
-}
-*/
-
-/* 시간대별 색갈 다르게 적용
-0-9 :lightblue
-10-15: orange
-16-20: pink
-21-24: purple
-
-const hour = new Date().getUTCHours();  // 현재 시간을 가져옴
-console.log(hour);
-
-if (hour >= 0 && hour < 10) {
-    document.body.style.backgroundColor = "lightblue";
-} else if (hour >= 10 && hour < 16) {
-    document.body.style.backgroundColor = "orange";
-} else if (hour >= 16 && hour < 21) {
-    document.body.style.backgroundColor = "pink";
-} else {
-    document.body.style.backgroundColor = "purple";
-}
-
-console.log(document.body.style.backgroundColor);  // 현재 배경색 확인
-*/
-
-//더 줄이는 방법
-//const hour = new Date().getHours();  // 현재 시간을 가져옴
-//if (hour >= 0 && hour < 10) document.body.style.backgroundColor = "lightblue";
-//if (hour >= 10 && hour < 16) document.body.style.backgroundColor = "orange";
-//if (hour >= 16 && hour < 21) document.body.style.backgroundColor = "pink";
-//if (hour >= 21 && hour < 24) document.body.style.backgroundColor = "purple";
-
-//forEach나 for문 사용해서 시간대별 색상바꾸기
-//const hour = new Date().getHours();  // 현재 시간을 가져옴
-/*chat GPT  대답
-const timeRanges = [
-    { start: 0, end: 10, color: "lightblue" },
-    { start: 10, end: 16, color: "orange" },
-    { start: 16, end: 21, color: "pink" },
-    { start: 21, end: 24, color: "purple" }
-];
-
-for (let i = 0; i < timeRanges.length; i++) {
-    if (hour >= timeRanges[i].start && hour < timeRanges[i].end) {
-        document.body.style.backgroundColor = timeRanges[i].color;
-        break;  // 조건이 맞으면 반복을 중단
-    }
-}
-*/
-/* 
-선생님 답.
-const dataArr = [
-    { cond: hour >= 0 && hour < 10, color: "lightblue" },
-    { cond: hour >= 0 && hour < 10, color: "lightblue" },
-    { cond: hour >= 0 && hour < 10, color: "lightblue" },
-    { cond: hour >= 0 && hour < 10, color: "lightblue" },
-];
-
-dataArr.forEach(data => {
-    if (data.cond) document.body.style.backgroundColor = data.color;
-});
-
-
-//아래와 같이 더줄일 수 있음.
-//dataArr.forEach(data=> (data.cond) &&(document.body.style.backgroundColor = data.color));
-
-
-*/
-/*chat GPT답
-const hour = new Date().getHours(); // 현재 시간을 가져옴
-[
-    { cond: hour >= 0 && hour < 10, color: "lightblue" },
-    { cond: hour >= 10 && hour < 16, color: "orange" },
-    { cond: hour >= 16 && hour < 21, color: "pink" },
-    { cond: hour >= 21 && hour < 24, color: "purple" }
-].forEach(data => {
-    if (data.cond) document.body.style.backgroundColor = data.color;
-});
-
-
-다른 답
-const hour = new Date().getHours(); // 현재 시간을 가져옴
-
-document.body.style.backgroundColor = [
-    { cond: hour >= 0 && hour < 10, color: "lightblue" },
-    { cond: hour >= 10 && hour < 16, color: "orange" },
-    { cond: hour >= 16 && hour < 21, color: "pink" },
-    { cond: hour >= 21 && hour < 24, color: "purple" }
-].find(data => data.cond).color;
+forEach는 직업 DOM제어해야 되는 작업환경에서 주로 쓰임
+map은 실제 DOM이 아닌 가상DOM이라는 순수배열을 다뤄야 하는 리액트에서 주로 쓰임
 
 */
 
+const lis = document.querySelectorAll("ul,li");
+console.log(lis); //Node List (Static DOM 해당 요소를 선텍한 시점으로 값이 고정)
+//const lis = document.getElementsByTagName('li')
+//HTMLCollection LiveDOM: 이미 변수에 담았다고 하더라도 이후에 특정 조작이 일어나면 실시간으로 해당 값이 갱신됨
 
-//삼항연산자 
-//위에 없으면 넣고 const hour = new Date().getHours();
-const hour = new Date().getHours(); // 현재 시간을 가져옴
+lis.forEach((data) => console.log(data));
 
-document.body.style.backgroundColor =
-    hour < 10 ? "lightblue" :
-        hour < 16 ? "orange" :
-            hour < 21 ? "pink" : "purple";
-
-
-
+lis.map((data))
