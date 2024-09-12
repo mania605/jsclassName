@@ -16,7 +16,7 @@ a {
 main {
   width: 350px;
   height: 700px;
-  margin: 1000px auto;
+  margin: 100px auto;
   background: linear-gradient(45deg, hotpink, violet);
   border-radius: 20px;
   overflow: hidden;
