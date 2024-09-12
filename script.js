@@ -44,10 +44,46 @@ if (hour >= 10 && hour < 16) document.body.style.backgroundColor = "orange";
 if (hour >= 16 && hour < 21) document.body.style.backgroundColor = "pink";
 if (hour >= 21 && hour < 24) document.body.style.backgroundColor = "purple";
 
+//forEach나 for문 사용해서 시간대별 색상바꾸기
+//const hour = new Date().getHours();  // 현재 시간을 가져옴
+/*chat GPT  대답
+const timeRanges = [
+    { start: 0, end: 10, color: "lightblue" },
+    { start: 10, end: 16, color: "orange" },
+    { start: 16, end: 21, color: "pink" },
+    { start: 21, end: 24, color: "purple" }
+];
+
+for (let i = 0; i < timeRanges.length; i++) {
+    if (hour >= timeRanges[i].start && hour < timeRanges[i].end) {
+        document.body.style.backgroundColor = timeRanges[i].color;
+        break;  // 조건이 맞으면 반복을 중단
+    }
+}
+*/
+ 
+선생님 답.
+const dataArr = [
+    { cond: hour >= 0 %% hour < 10, color: "lightblue" },
+    { cond: hour >= 0 %% hour < 10, color: "lightblue" },
+    { cond: hour >= 0 %% hour < 10, color: "lightblue" },
+    { cond: hour >= 0 %% hour < 10, color: "lightblue" },
+];
+
+dataArr.forEach(data => {
+    if (data.cond) document.body.style.backgroundColor = data.color;
+});
+
+
+//아래와 같이 더줄일 수 있음.
+//dataArr.forEach(data=> (data.cond) &&(document.body.style.backgroundColor = data.color));
+
+
 
 //삼항연산자 
 //위에 없으면 넣고 const hour = new Date().getHours();
 document.body.style.backgroundColor = hour < 10 ? "lightblue" :
     hour < 16 ? "orange" :
         hour < 21 ? "pink" : "purple"
+
 
