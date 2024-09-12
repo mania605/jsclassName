@@ -1,0 +1,32 @@
+Reset * {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  color: inherit;
+}
+
+ul, ol, li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+nav {
+  padding: 100px 200px 0px;
+}
+
+#box {
+  width: 400px;
+  height: 400px;
+  background-color: hotpink;
+  margin: 100px 200px;
+  transition: all 1s;
+}
+#box.on {
+  background-color: aqua;
+  transform: rotate(360deg);
+}
+
+/*# sourceMappingURL=style.css.map */
