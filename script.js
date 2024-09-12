@@ -1,30 +1,27 @@
 /*
-참조형 자료를 변수에 옮겨담으면 왜 에러가 나는지
+ECTMA6 전개연산자(Spread Operator)
+쉘로우 카피 방지를 위해 아예 [메모리 힙상의 값]을 꺼내와서 펼친 뒤 [새로운 값]으로 복사
+새로운 배열, 객체로 다시 묶어주는 형태
+-> 완전복사(Deep Copy)
 
 */
-//기존 원본 배열 콜스택 상에서 originArr 라는 변수
+
+
 const originArr = [1, 2, 3];
-
-//기존 원본 배열을 새로운 newArr1에 옮겨담아서 복사
-//callstack상에서 originArr라는 변수에 있던 참조링크값을 보가새허 newArr1에 할당
-//Heap메모리상의 원본데이터는 그대로 있고, 해당 값을 가리키는 참조링크만 복사되어 각각newArr1, originArr에 있음
-//shallow copy(얕은 복사) : 원본데이터는 그대로고 참조 링크가 복사된 형태
-const newArr1 = originArr; //  [1, 2, 3]
-
-console.log(newArr1); // [1, 2, 3]
-console.log(originArr); // [1, 2, 3]  
-
-
-//매우매우 중요//
-//새로운 참조링크가 복사된 newArr1을 불러와서 값을 변경하면 
-//결국 가리키고 있는 heap상의 값은 동일하기 때문에 
-//원본의 훼손이 일어남(불변성 유지 안됨)
-newArr1[0] = 0;  //이제 원본도 바뀜 첫번째 숫자는 0
-
-console.log(newArr1); // [0, 2, 3]
-console.log(originArr); // [0, 2, 3] (같은 배열을 참조하므로 함께 변경됨)
+console.log(...originArr);
+//해당 값을 꺼내서 복사한다. 배열도 아니고 객체도 아님. 그냥 펼쳐진 상태.
+//Heap메모리상에 있는 값 자체를 꺼내서 펼친 뒤 복사한 형태
+//그렇게 복사된 형태의 데이터를 다시 새롭게 배열로 그룹화
+//힙메모리상에 새로운 값이 복사되고, 새로운 참조값이 생기므로 복사된 배열의 저용 참조값이 newArr에 할당됨
+const newArr = [...originArr];
+console.log(newArr);
+console.log(originArr);
 
 
+//newArr에는 물리적으로 새로운 메모리 힙상의 데이터를 참조하고 있기 때문에
+//해당 참조값이 가리키는 메모리힙상의 값을 고쳐도 원본훼손안됨(불변성 유지됨)
+newArr[0] = 0;
+console.log(newArr);
+console.log(originArr);
 
-/* 
-*/
+
