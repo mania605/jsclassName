@@ -38,11 +38,13 @@ if (hour >= 0 && hour < 10) {
 
 console.log(document.body.style.backgroundColor);  // 현재 배경색 확인
 */
-const hour = new Date().getHours();  // 현재 시간을 가져옴
-if (hour >= 0 && hour < 10) document.body.style.backgroundColor = "lightblue";
-if (hour >= 10 && hour < 16) document.body.style.backgroundColor = "orange";
-if (hour >= 16 && hour < 21) document.body.style.backgroundColor = "pink";
-if (hour >= 21 && hour < 24) document.body.style.backgroundColor = "purple";
+
+//더 줄이는 방법
+//const hour = new Date().getHours();  // 현재 시간을 가져옴
+//if (hour >= 0 && hour < 10) document.body.style.backgroundColor = "lightblue";
+//if (hour >= 10 && hour < 16) document.body.style.backgroundColor = "orange";
+//if (hour >= 16 && hour < 21) document.body.style.backgroundColor = "pink";
+//if (hour >= 21 && hour < 24) document.body.style.backgroundColor = "purple";
 
 //forEach나 for문 사용해서 시간대별 색상바꾸기
 //const hour = new Date().getHours();  // 현재 시간을 가져옴
@@ -61,13 +63,13 @@ for (let i = 0; i < timeRanges.length; i++) {
     }
 }
 */
- 
+/* 
 선생님 답.
 const dataArr = [
-    { cond: hour >= 0 %% hour < 10, color: "lightblue" },
-    { cond: hour >= 0 %% hour < 10, color: "lightblue" },
-    { cond: hour >= 0 %% hour < 10, color: "lightblue" },
-    { cond: hour >= 0 %% hour < 10, color: "lightblue" },
+    { cond: hour >= 0 && hour < 10, color: "lightblue" },
+    { cond: hour >= 0 && hour < 10, color: "lightblue" },
+    { cond: hour >= 0 && hour < 10, color: "lightblue" },
+    { cond: hour >= 0 && hour < 10, color: "lightblue" },
 ];
 
 dataArr.forEach(data => {
@@ -79,11 +81,40 @@ dataArr.forEach(data => {
 //dataArr.forEach(data=> (data.cond) &&(document.body.style.backgroundColor = data.color));
 
 
+*/
+/*chat GPT답
+const hour = new Date().getHours(); // 현재 시간을 가져옴
+[
+    { cond: hour >= 0 && hour < 10, color: "lightblue" },
+    { cond: hour >= 10 && hour < 16, color: "orange" },
+    { cond: hour >= 16 && hour < 21, color: "pink" },
+    { cond: hour >= 21 && hour < 24, color: "purple" }
+].forEach(data => {
+    if (data.cond) document.body.style.backgroundColor = data.color;
+});
+
+
+다른 답
+const hour = new Date().getHours(); // 현재 시간을 가져옴
+
+document.body.style.backgroundColor = [
+    { cond: hour >= 0 && hour < 10, color: "lightblue" },
+    { cond: hour >= 10 && hour < 16, color: "orange" },
+    { cond: hour >= 16 && hour < 21, color: "pink" },
+    { cond: hour >= 21 && hour < 24, color: "purple" }
+].find(data => data.cond).color;
+
+*/
+
 
 //삼항연산자 
 //위에 없으면 넣고 const hour = new Date().getHours();
-document.body.style.backgroundColor = hour < 10 ? "lightblue" :
-    hour < 16 ? "orange" :
-        hour < 21 ? "pink" : "purple"
+const hour = new Date().getHours(); // 현재 시간을 가져옴
+
+document.body.style.backgroundColor =
+    hour < 10 ? "lightblue" :
+        hour < 16 ? "orange" :
+            hour < 21 ? "pink" : "purple";
+
 
 
