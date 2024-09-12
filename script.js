@@ -25,3 +25,17 @@ console.log(newArr);
 console.log(originArr);
 
 
+//작년 수강생 정보
+const first_year = {
+    name: 'Michael',
+    age: 20,
+    isFemale: false,
+};
+
+console.log(first_year);
+
+const second_year = { ...first_year };
+second_year.age = 21;
+console.log(second_year);
+console.log(first_year);
+
