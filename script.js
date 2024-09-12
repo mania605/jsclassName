@@ -1,5 +1,6 @@
 const btnReset = document.querySelectorAll("button")[0];
 const btnActive = document.querySelectorAll("button")[1];
+const btnToggle = document.querySelectorAll('button'[2]);
 const box = document.querySelector("#box");
 
 /*
@@ -18,6 +19,6 @@ btnReset.addEventListener('click', () => {
   box.classList.add("on");
 });
 
-btnActive.addEventListener('click', () => {
-  box.classList.remove("on");
+btnToggle.addEventListener('click', () => {
+  box.classList.toggle("on");
 });
