@@ -1,4 +1,3 @@
-@charset "UTF-8";
 Reset * {
   margin: 0px;
   padding: 0px;
@@ -19,38 +18,51 @@ main {
   height: 700px;
   margin: 100px auto;
   background: linear-gradient(45deg, hotpink, violet);
+  border-radius: 20px;
   overflow: hidden;
   position: relative;
 }
 main .btnToggle {
-  width: 40px;
-  height: 40px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  cursor: pointer;
+  width: 30px;
+  height: 24px;
   position: absolute;
   top: 30px;
   right: 30px;
-  cursor: pointer;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-between;
+  justify-content: center;
 }
 main .btnToggle > div {
   width: 100%;
   height: 2px;
   background-color: #fff;
-  transition: all 0.3s ease;
-}
-main .btnToggle.on > div {
-  /* 위, 아래 줄이 교차되며 X자로 변환 */
+  border-radius: 1px;
+  transition: all 0.5s;
 }
 main .btnToggle.on > div.middle {
   width: 0%;
-  transform: translateX(50%);
 }
 main .btnToggle.on > div.top {
-  transform: translateY(18px) rotate(225deg);
+  transform: translateY(11px) rotate(225deg);
 }
 main .btnToggle.on > div.bottom {
-  transform: translateY(-18px) rotate(-225deg);
+  transform: translateY(-11px) rotate(-225deg);
+}
+main .mobilePanel {
+  width: 260px;
+  height: 100%;
+  position: absolute;
+  top: 0px;
+  left: -260px;
+  background-image: linear-gradient(45deg, #555, #333);
+  opacity: 0;
+  transition: all 0.5s;
+}
+main .mobilePanel.on {
+  left: 0px;
+  opacity: 1;
 }
 
 /*# sourceMappingURL=style.css.map */
