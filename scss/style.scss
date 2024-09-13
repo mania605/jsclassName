@@ -5,33 +5,58 @@ main {
   height: 700px;
   margin: 100px auto;
   background: linear-gradient(45deg, hotpink, violet);
-  border-radius: 20px;
   overflow: hidden;
   position: relative;
 
   .btnToggle {
-    width: 30px;
-    height: 24px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     position: absolute;
     top: 30px;
     right: 30px;
-    display: flex;
-    flex-wrap: wrap;
-    align-content: space-between;
-    justify-content: center;
+    cursor: pointer;
 
     > div {
       width: 100%;
       height: 2px;
       background-color: #fff;
-      transition: all 0.5s;
+      transition: all 0.3s ease;
     }
   }
   .btnToggle.on{
     >div {
       &.middle{
         width: 0%;
+        transform: translateX(50%);
       }
+        /* 위, 아래 줄이 교차되며 X자로 변환 */
+      &.top {
+        transform: translateY(18px) rotate(225deg) 
+      }
+
+      &.bottom {
+        transform: translateY(-18px) rotate(-225deg);
+      }      
+    }
+  }
+
+    .mobilePanel {
+    width: 280px;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left:0px;
+    background-image:linear-gradient(45deg, #555,#333);
+    opacity:0px;
+    transition: all 0.5s;
+
+    &.on{
+      left: 0px;
+      opacity: 1;
     }
   }
 }
+
